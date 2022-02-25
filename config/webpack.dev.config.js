@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+console.log("当前环境:development");
 module.exports = {
   mode: "development",
   plugins: [

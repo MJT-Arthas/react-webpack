@@ -1,5 +1,6 @@
 const webpack = require("webpack"); // 访问内置的插件
 const path = require("path");
+
 module.exports = {
   entry: {
     index: "./src/index.tsx",
@@ -9,6 +10,8 @@ module.exports = {
     filename: "js/bundle.js",
     path: path.resolve(__dirname, "./dist"),
   },
+  stats: "normal",
+  // { assets: false, timings: true },
   resolve: {
     //下面后缀的文件导入时可以省略文件名，js必须要有，否则会react.js文件会无法被解析
     extensions: [".ts", ".tsx", ".js"],
@@ -23,7 +26,7 @@ module.exports = {
     compress: false, //是否压缩
     port: 12333, //端口号
     host: "0.0.0.0", //外部服务器可以访问
-    open: true, //是否运行时打开浏览器
+    open: false, //是否运行时打开浏览器
   },
   module: {
     rules: [
@@ -38,12 +41,23 @@ module.exports = {
         test: /\.[(png)|(obj)|(json)]$/,
         loader: "file-loader",
       },
-      //加载css
+      //加载scss
       //安装npm install --save-dev css-loader
       //npm install style-loader --save-dev
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.scss$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: "[path][name]__[local]",
+              },
+            },
+          },
+          "sass-loader",
+        ],
       },
     ],
   },

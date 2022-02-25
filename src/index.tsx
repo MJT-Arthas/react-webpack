@@ -1,4 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-
-ReactDOM.render(<div>Hello TS React</div>, document.getElementById("root"));
+import APP from "./App";
+import "./index.scss";
+import "./public.scss";
+ReactDOM.render(<APP />, document.getElementById("root"));
