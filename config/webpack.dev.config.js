@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 console.log("当前环境:development");
 module.exports = {
   mode: "development",
@@ -9,5 +11,6 @@ module.exports = {
       title: "标题", //用于生成的HTML文档的标题
       template: "./public/index.html", //默认index.html位置
     }),
+    new BundleAnalyzerPlugin(),
   ],
 };
