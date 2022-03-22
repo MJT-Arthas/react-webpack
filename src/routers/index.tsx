@@ -1,17 +1,18 @@
-import { lazy, ReactNode, Suspense } from "react";
+import React, { ReactNode, lazy, Suspense } from "react";
 import { RouteObject } from "react-router-dom";
 // import AppLayout from '../AppLayout'
-import Detail from "../page/Detail";
-import Home from "../page/Home";
-import Login from "../page/Login";
-import User from "../page//User";
-import React, { useState, useEffect } from "react";
+// import Detail from "../page/Detail";
+// import Home from "../page/Home";
+// import Login from "../page/Login";
+// import User from "../page//User";
 // 用懒加载实现优化
-// const AppLayout = lazy(() => import('../AppLayout'));
-// const Detail = lazy(() => import("../page/Detail"));
-// const Home = lazy(() => import("../page/Home"));
+// const AppLayout = lazy(() => import("../AppLayout"));
+const Detail = lazy(() => import("../page/Detail"));
+const Home = lazy(() => import("../page/Home"));
+const User = lazy(() => import("../page/User"));
+const NotFound = lazy(() => import("../page/NotFound"));
+
 // const Login = lazy(() => import("../page/Login"));
-// const User = lazy(() => import('../User'));
 
 // 切换页面会出现闪屏现象
 // 解决思路：公共页面不采用懒加载的方式 并在App.tsx去除Suspense的包裹
@@ -44,7 +45,12 @@ export const routers: RouteObject[] = [
     ],
   },
   {
-    path: "/login",
-    element: lazyLoad(<Login />),
+    path: "*",
+    element: lazyLoad(<NotFound />),
   },
+
+  // {
+  //   path: "/login",
+  //   element: lazyLoad(<Login />),
+  // },
 ];

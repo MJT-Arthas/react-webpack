@@ -1,7 +1,7 @@
 import { Layout, Menu, Breadcrumb } from "antd";
 import {
-  UserOutlined,
-  LaptopOutlined,
+  SettingOutlined,
+  DashboardOutlined,
   NotificationOutlined,
 } from "@ant-design/icons";
 import { Link, matchRoutes, Outlet, useLocation } from "react-router-dom";
@@ -14,7 +14,7 @@ const { Header, Content, Sider } = Layout;
 export default function AppLayout() {
   const location = useLocation();
   const [defaultSelectedKeys, setDefaultSelectedKeys] = useState<string[]>([]);
-  const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>([]);
+  const [defaultOpenKeys, setDefaultOpenKeys] = useState<string[]>(["/user"]);
   const [isInit, setIsInit] = useState<Boolean>(false);
 
   useEffect(() => {
@@ -32,9 +32,12 @@ export default function AppLayout() {
       });
     }
 
-    setDefaultSelectedKeys(pathArr);
-    setDefaultOpenKeys(OpenKeys);
-    console.log("OpenKeys", OpenKeys);
+    if (OpenKeys[0] !== "/") {
+      console.log("OpenKeys", OpenKeys);
+      console.log("pathArr", pathArr);
+      setDefaultOpenKeys(OpenKeys);
+      setDefaultSelectedKeys(pathArr);
+    }
 
     setIsInit(true);
   }, [location.pathname]);
@@ -59,14 +62,13 @@ export default function AppLayout() {
               mode="inline"
               //   {/* 根据url地址实现选中高亮 */}
               selectedKeys={defaultSelectedKeys}
-              openKeys={defaultOpenKeys}
               style={{ height: "100%", borderRight: 0 }}
             >
-              <SubMenu key="/user" icon={<UserOutlined />} title="用户管理">
-                <Menu.Item key="/user/list">
-                  <Link to="/user/list">用户列表</Link>
+              <SubMenu key="/user" icon={<SettingOutlined />} title="基本工具">
+                <Menu.Item icon={<DashboardOutlined />} key="/user/list">
+                  <Link to="/user/list">工时计算</Link>
                 </Menu.Item>
-                <Menu.Item key="/user/detail">用户信息</Menu.Item>
+                <Menu.Item key="/user/detail">点不进来</Menu.Item>
               </SubMenu>
               {/* <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
                 <Menu.Item key="5">空的</Menu.Item>

@@ -13,10 +13,9 @@ module.exports = {
     index: "./src/index.tsx",
   },
   plugins: [new webpack.ProgressPlugin(handler)],
-  //   mode: "development",
   output: {
     filename: "js/bundle.js",
-    path: path.resolve(__dirname, "./dist"),
+    path: path.resolve(__dirname, "../dist"),
     publicPath: "/",
   },
   stats: "normal",
@@ -25,25 +24,13 @@ module.exports = {
     //下面后缀的文件导入时可以省略文件名，js必须要有，否则会react.js文件会无法被解析
     extensions: [".ts", ".tsx", ".js"],
     alias: {
-      "@": path.resolve("src"),
+      // "@": path.resolve("src"),
       // "@component": path.resolve("src/component"),
       // "@pages": path.resolve("src/pages"),
       // "@utils": path.resolve("src/utils"),
     },
   },
-  devtool: "source-map",
-  devServer: {
-    //告诉服务器从哪个目录中提供内容。只有在你想要提供静态文件时才需要
-    static: {
-      directory: path.join(__dirname, "dist"),
-    },
-    historyApiFallback: true,
 
-    compress: false, //是否压缩
-    port: 12333, //端口号
-    host: "0.0.0.0", //外部服务器可以访问
-    open: false, //是否运行时打开浏览器
-  },
   module: {
     rules: [
       {
