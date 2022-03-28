@@ -12,13 +12,14 @@ module.exports = {
   entry: {
     index: "./src/index.tsx",
   },
-  plugins: [new webpack.ProgressPlugin(handler)],
+  // new webpack.ProgressPlugin(handler),
+  plugins: [ProgressBarPlugin()],
   output: {
     filename: "js/bundle.js",
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/",
   },
-  stats: "normal",
+  stats: "errors-only",
   // { assets: false, timings: true },
   resolve: {
     //下面后缀的文件导入时可以省略文件名，js必须要有，否则会react.js文件会无法被解析
