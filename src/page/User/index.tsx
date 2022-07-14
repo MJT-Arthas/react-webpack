@@ -118,9 +118,9 @@ export default function Detail() {
     let resultHour =
       Number(inHour) + Number((tempMin / 60).toString().split(".")[0]);
 
-    let resultMin: number | string = Number(inMin) + (tempMin % 60);
+    let resultMin: number | string = Math.round(Number(inMin) + (tempMin % 60));
     if (resultMin >= 60) {
-      resultMin = resultMin % 60;
+      resultMin = Math.round(resultMin % 60);
       resultHour++;
     }
     if (resultMin < 10) {
@@ -174,9 +174,9 @@ export default function Detail() {
 
     let resultHour =
       Number(inhour) + Number((tempMin / 60).toString().split(".")[0]);
-    let resultMin: number | string = Number(inmin) + (tempMin % 60);
+    let resultMin: number | string = Math.round(Number(inmin) + (tempMin % 60));
     if (resultMin >= 60) {
-      resultMin = resultMin % 60;
+      resultMin = Math.round(resultMin % 60);
       resultHour++;
     }
     if (resultMin < 10) {
@@ -222,7 +222,7 @@ export default function Detail() {
             {average.toFixed(2)}
           </Descriptions.Item>
           <Descriptions.Item label="Is enough">
-            {averageMin - rtotalDay > 0 ? "YES" : "No"}
+            {averageMin - rtotalDay * 10.6 > 0 ? "YES" : "No"}
           </Descriptions.Item>
           <Descriptions.Item label="Departure time ">
             {leaveTime}

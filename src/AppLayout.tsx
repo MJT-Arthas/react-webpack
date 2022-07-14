@@ -68,7 +68,9 @@ export default function AppLayout() {
                 <Menu.Item icon={<DashboardOutlined />} key="/user/list">
                   <Link to="/user/list">工时计算</Link>
                 </Menu.Item>
-                <Menu.Item key="/user/detail">点不进来</Menu.Item>
+                <Menu.Item key="/user/detail">
+                  <Link to="/user/detail">两码工具</Link>
+                </Menu.Item>
               </SubMenu>
               {/* <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
                 <Menu.Item key="5">空的</Menu.Item>
